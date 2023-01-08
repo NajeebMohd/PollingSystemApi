@@ -1,4 +1,4 @@
-const expresss = require('express');
+const express = require('express');
 const router = express.Router();
 
 const OptionsController = require('../../../controller/api/v1/options_controller');
