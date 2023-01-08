@@ -26,12 +26,21 @@ module.exports.Create = function(req,res){
     
 }
 
-module.exports.Fetch = function(req,res){//use populate here
-    Question.findById(req.params.id,function(err,question){
+module.exports.Fetch = function(req,res){
+    Question.findById(req.params.id)
+    .populate({
+        path : 'options'
+    })
+    .exec(function(err,question){
+        if(err){
+            console.log('error while fetching the question ',err);
+            return res.json(500,{
+                message : 'internal server problem'
+            })
+        }
         return res.json(200,{
-            message : 'succesfully fetched the question',
             question : question
-        })
+        });
     });
 }
 
@@ -46,13 +55,20 @@ module.exports.Delete = function(req,res){
 module.exports.CreateOption = function(req,res){
     Question.findById(req.params.id,function(err,question){
         if(question){
-            Options.create(req.body,function(option){
+            
+            Options.create({
+                text : req.body.text,
+                votes : req.body.votes,
+                link_to_vote : req.body.link_to_vote,
+                question : req.params.id
+            },function(err,option){
+                
                 question.options.push(option);
                 question.save();
-                return res.redirect(200,{
+                return res.json(200,{
                     message : 'sucessfully added the options'
                 });
-            })
+            });
         }
-    })
+    });
 }

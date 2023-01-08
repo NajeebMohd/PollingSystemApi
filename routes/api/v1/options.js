@@ -3,6 +3,6 @@ const router = express.Router();
 
 const OptionsController = require('../../../controller/api/v1/options_controller');
 
-//use the routes here
+router.delete('/:id/delete',OptionsController.DeleteOption);
 
 module.exports = router;

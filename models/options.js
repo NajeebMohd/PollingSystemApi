@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const OptionsSchema = new mongoose.Schema({
     text : {
         type : String,
-        required : true,
-        unique : true
+        required : true,        
     },
     votes : {
         type : Number,
@@ -14,6 +13,10 @@ const OptionsSchema = new mongoose.Schema({
         type : String,
         required : true,
         unique : true
+    },
+    question : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Question'
     }    
 },{
     timestamps : true
