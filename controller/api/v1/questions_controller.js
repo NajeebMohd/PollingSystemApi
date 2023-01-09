@@ -54,7 +54,7 @@ module.exports.Delete = function(req,res){
             });
         }
         return res.json(200,{
-            message : 'delete the question sucessfully'
+            message : 'deleted the question sucessfully'
         })
     });
 }
