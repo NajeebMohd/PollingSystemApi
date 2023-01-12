@@ -69,7 +69,8 @@ module.exports.CreateOption = async function(req,res){
                 question : req.params.id,
                 
             });
-            option.link_to_vote = "http://localhost:8000/api/v1/options/"+option.id+"/add_vote";
+            //option.link_to_vote = "http://localhost:8000/api/v1/options/"+option.id+"/add_vote";//uncomment this for localhost
+            option.link_to_vote = "https://erin-frantic-sheep.cyclic.app/api/v1/options/"+option.id+"/add_vote";
             option.save();
             question.options.push(option);
             question.save();
